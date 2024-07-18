@@ -2,9 +2,9 @@ const axios = require('axios');
 
 // 配置你的 Cookie 信息
 const cookies = {
-    DEDEUSERID: 'your_dedeuserid',
-    SESSDATA: 'your_sessdata',
-    bili_jct: 'your_bili_jct'
+    DEDEUSERID: '208012258',
+    SESSDATA: 'd00c7345,1736852662,df168*72CjCSXbH_Z4VOlZvSipmvuTuNcHQrS1-hZSRglokuzIP1DRLh7bhLeZRFnIBtcc6DuRoSVmZzb0p6bFRiejNNaEJMd1hMb3BlcXNhSW5JWWdRZkMta1Q4LVFaUEJiVnAtdE44OHAzS0c1bjJ4cFNkZmNiUUVHYkJtcnRNN2xHc3lBSldWSHRIOUhBIIEC',
+    bili_jct: '2843a48f6c786c3efffe24debddc8d41'
 };
 
 // 设置 Axios 实例
@@ -25,6 +25,7 @@ async function getBBi() {
             console.log('成功领取 B 币券');
         } else {
             console.log('领取失败：', response.data.message);
+            console.log('response', response);
         }
     } catch (error) {
         console.error('请求出错：', error);
