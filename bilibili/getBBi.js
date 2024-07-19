@@ -1,17 +1,22 @@
 import axios from 'axios';
-import data from '../data.json' assert {type: 'json'}
-
+// available for node 16+
+import data from '../data.json' assert {type: 'json'}; 
+// available for more
+// const data = require('../data.json');
 
 export default class BiliBili {
 
-    constructor(DEDEUSERID, SESSDATA, bili_jct) {
-        this.DEDEUSERID = DEDEUSERID;
-        this.SESSDATA = SESSDATA;
-        this.bili_jct = bili_jct;
+    static {
+        BiliBili.baseURL = 'https://api.bilibili.com';
+    }
+
+    buildInstance(jsonData) {
+        console.log("build instance with JSON", jsonData);
+        
         this.instance = axios.create({
             baseURL: 'https://api.bilibili.com',
             headers: {
-                'Cookie': `DEDEUSERID=${DEDEUSERID}; SESSDATA=${SESSDATA}; bili_jct=${bili_jct}`
+                'Cookie': jsonData
             }
         });
     }
@@ -35,12 +40,8 @@ export default class BiliBili {
 
 }
 
-// 读取JSON中的cookie配置
+// 读取JSON中的cookie配置 document.cookie
 console.log("read cookies", data);
-// const bilibili_cookies = JSON.parse(data);
-const bilibili = new BiliBili(data.bilibili.DEDEUSERID, data.bilibili.SESSDATA, data.bilibili.bili_jct);
+const bilibili = new BiliBili();
+bilibili.buildInstance(data.BiliBili);
 bilibili.getBBi();
-
-
-
-
