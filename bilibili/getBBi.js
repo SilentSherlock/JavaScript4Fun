@@ -9,7 +9,7 @@ export default class BiliBili {
     }
 
     buildInstance(jsonData) {
-        console.log("build instance with JSON", jsonData);
+        // console.log("build instance with JSON", jsonData);
         
         this.instance = axios.create({
             baseURL: 'https://api.bilibili.com',
@@ -21,22 +21,45 @@ export default class BiliBili {
         });
     }
 
-    // 自动领取 B 币
-    async getBBi() {
+    /**
+     * 自动领取权益
+     * @param {权益类型} type 
+     */
+    async getPrivilegeByType(type) {
         try {
             const response = await this.instance.post('/x/vip/privilege/receive', {
-                type: 1 ,// B 币券类型 
+                type: type ,// 券类型 
                 csrf: data.bilibili.csrf
             });
             if (response.data.code === 0) {
-                console.log('成功领取 B 币券');
+                console.log('成功领取type {}权益', type);
+                return true;
             } else {
                 console.log('领取失败：', response.data.message);
                 console.log('response', response);
+                return false;
             }
         } catch (error) {
             console.error('请求出错：', error);
+            return false;
         }
+    }
+
+    async getAllPrivilege() {
+        // 1-B币 2-优惠券 3-漫画福利券
+        const typeMap = new Map();
+        typeMap.set(1, "B币");
+        typeMap.set(2, "优惠券");
+        typeMap.set(3, "漫画福利券");
+        for (const [type, typeValue] of typeMap) {
+            let result = await this.getPrivilegeByType(type);
+            if (result) {
+                console.log("权益%s领取成功", typeValue);
+            }else {
+                console.log("权益%s领取失败", typeValue);
+            }
+        }
+        
     }
 
 }
@@ -45,4 +68,4 @@ export default class BiliBili {
 console.log("read cookies", data);
 const bilibili = new BiliBili();
 bilibili.buildInstance(data.bilibili.cookie);
-bilibili.getBBi();
+bilibili.getAllPrivilege();
