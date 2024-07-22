@@ -1,9 +1,7 @@
 import axios from 'axios';
 // available for node 16+
 import data from '../data.json' assert {type: 'json'}; 
-// available for more
-// const data = require('../data.json');
-
+ 
 export default class BiliBili {
 
     static {
@@ -16,6 +14,8 @@ export default class BiliBili {
         this.instance = axios.create({
             baseURL: 'https://api.bilibili.com',
             headers: {
+                // 需要以表单形式提交
+                'Content-Type': 'application/x-www-form-urlencoded',
                 'Cookie': jsonData
             }
         });
@@ -25,7 +25,8 @@ export default class BiliBili {
     async getBBi() {
         try {
             const response = await this.instance.post('/x/vip/privilege/receive', {
-                type: 1 // B 币券类型
+                type: 1 ,// B 币券类型 
+                csrf: data.bilibili.csrf
             });
             if (response.data.code === 0) {
                 console.log('成功领取 B 币券');
@@ -43,5 +44,5 @@ export default class BiliBili {
 // 读取JSON中的cookie配置 document.cookie
 console.log("read cookies", data);
 const bilibili = new BiliBili();
-bilibili.buildInstance(data.BiliBili);
+bilibili.buildInstance(data.bilibili.cookie);
 bilibili.getBBi();
