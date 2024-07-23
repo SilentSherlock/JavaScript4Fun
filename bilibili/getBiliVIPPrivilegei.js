@@ -23,7 +23,7 @@ export default class BiliBili {
 
     /**
      * 自动领取权益
-     * @param {权益类型} type 
+     * @param {int} type
      */
     async getPrivilegeByType(type) {
         try {
