@@ -55,11 +55,11 @@ export default class BiliBili {
             let result = await this.getPrivilegeByType(type);
             if (result) {
                 console.log("权益%s领取成功", typeValue);
-            }else {
+            } else {
                 console.log("权益%s领取失败", typeValue);
             }
         }
-        
+
     }
 
 }
