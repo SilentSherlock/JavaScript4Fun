@@ -1,3 +1,3 @@
 # JavaScript4Fun
-* Toy JavaScrpit Program
-* suitable for worktime, code for fun
+* Toy JavaScript Program
+* suitable for work time, code for fun

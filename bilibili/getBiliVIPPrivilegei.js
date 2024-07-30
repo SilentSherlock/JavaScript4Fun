@@ -23,7 +23,7 @@ export default class BiliBili {
 
     /**
      * 自动领取权益
-     * @param {权益类型} type 
+     * @param {int} type
      */
     async getPrivilegeByType(type) {
         try {
@@ -55,11 +55,11 @@ export default class BiliBili {
             let result = await this.getPrivilegeByType(type);
             if (result) {
                 console.log("权益%s领取成功", typeValue);
-            }else {
+            } else {
                 console.log("权益%s领取失败", typeValue);
             }
         }
-        
+
     }
 
 }
