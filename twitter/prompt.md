@@ -1,5 +1,11 @@
 # prompt
-## 使用纯js编写一个脚本，可以在控制台里运行
+## 使用纯js编写一个可以在控制台里运行的脚本
 ### 脚本要求
-* 读入一个由链接组成的列表
-* 在当前页面打开链接，搜索页面元素
+* 定义一个由链接组成的列表links，定义一个从LocalStorage中读取的当前链接变量，currentLink
+* 如果currentLink是空值或者是null，就赋值为列表links的第一个值
+* 把currentLink的值写入LocalStorage
+* 在当前页面打开currentLink指向的链接
+* 从LocalStorage中读取currentLink值，同时截取currentLink字符串中最后一个斜杠，到字符串结尾的部分，赋值给username
+* 搜索页面元素，获取aria-label值为Follow@username的button
+* 点击button
+* 把links的下一个值写入
