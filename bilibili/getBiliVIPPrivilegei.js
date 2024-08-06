@@ -51,6 +51,11 @@ export default class BiliBili {
         typeMap.set(1, "B币");
         typeMap.set(2, "优惠券");
         typeMap.set(3, "漫画福利券");
+        typeMap.set(4, "漫画福利券");//其他福利，懒得写名字了
+        typeMap.set(5, "漫画福利券");
+        typeMap.set(6, "漫画福利券");
+        typeMap.set(7, "漫画福利券");
+        typeMap.set(8, "漫画福利券");
         for (const [type, typeValue] of typeMap) {
             let result = await this.getPrivilegeByType(type);
             if (result) {
